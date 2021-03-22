@@ -28,6 +28,8 @@
                             <h6 class="m-0 font-weight-bold text-primary">Lista</h6>
                             <br/>
                         </div>
+
+                        {% if materias%}
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -36,10 +38,8 @@
                                             <th>Nome</th>
                                             <th>Idioma</th>
                                             <th>Palavras Chave</th>
-                                            <th>tamanho</th>
-                                           
-                                           
-                                            <th><i class="fa fa-trash" aria-hidden="true"></i></th>
+                                            <th>Palavras</th>
+                                            <th>Excluir</th>
                                         </tr>
                                     </thead>
                                     
@@ -47,20 +47,20 @@
 
                                         {% for materia in materias %}
                                         <tr>
-                                            <td><a href="">{{ materia['geral']['titulo'] }}</a></td>
-                                            <td>{{ materia['geral']['idioma'] }}</td>
+                                            <td><a href="">{{ materia[0]['geral']['titulo'] }}</a></td>
+                                            <td>{{ materia[0]['geral']['idioma'] }}</td>
                                             <td>{{ 
-                                                materia['geral']['palavras_chave'][0] + ', ' +  
-                                                materia['geral']['palavras_chave'][1]  + ', ' +  
-                                                materia['geral']['palavras_chave'][2]  + ', ' +
-                                                materia['geral']['palavras_chave'][3]  + ', ' + 
-                                                materia['geral']['palavras_chave'][4]
+                                                materia[0]['geral']['palavras_chave'][0] + ', ' +  
+                                                materia[0]['geral']['palavras_chave'][1]  + ', ' +  
+                                                materia[0]['geral']['palavras_chave'][2]  + ', ' +
+                                                materia[0]['geral']['palavras_chave'][3]  + ', ' + 
+                                                materia[0]['geral']['palavras_chave'][4]
                                             }}</td>
-                                            <td>{{ materia['metadados_tecnicos']['tamanho'] }}</td>
+                                            <td>{{ materia[0]['metadados_tecnicos']['tamanho'] }}</td>
         
                                             <td>
-                                                <a href="" class="trash-item">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                <a href="{{ url_for('excluirPage', pageNumber=materia[1]) }}" class="btn btn-danger btn-circle btn-sm">
+                                                    <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -71,7 +71,9 @@
                                 </table>
                             </div>
                         </div>
+                        {%endif%}
                     </div>
+                    <div style="padding: 120px;"></div>
 
                 </div>
                 <!-- /.container-fluid -->
