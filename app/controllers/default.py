@@ -50,4 +50,4 @@ def adicionarPage(pageNumber):
     lom = json.dumps(learning_object.get_as_json(), indent=4)
     db.create("learning_object", learning_object)
 
-    return "%s" %pages_found[int(pageNumber)]
+    return render_template('adicionado.html', page_title=page_title)
