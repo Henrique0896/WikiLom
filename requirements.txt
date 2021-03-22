@@ -1,0 +1,11 @@
+Flask==1.1.2
+beautifulsoup4==4.9.3
+certifi==2020.12.5
+chardet==4.0.0
+dnspython==2.1.0
+idna==2.10
+pymongo==3.11.3
+requests==2.25.1
+soupsieve==2.2
+urllib3==1.26.3
+wikipedia==1.4.0

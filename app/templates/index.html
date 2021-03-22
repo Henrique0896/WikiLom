@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+<!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <br/>
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                        <h1 class="h3 mb-0 text-gray-800">Matérias</h1>
+                        <a href="/adicionar" class="btn btn-primary"> Adicionar</a>
+
+
+                    </div>
+
+                    <!--
+                    <h1 class="h3 mb-2 text-gray-800">Clientes</h1>
+                    <a href="" class="btn btn-primary"> Novo cliente</a>
+                    -->
+
+                    <br/>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <br/>
+                            <h6 class="m-0 font-weight-bold text-primary">Lista</h6>
+                            <br/>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Idioma</th>
+                                            <th>Palavras Chave</th>
+                                            <th>tamanho</th>
+                                           
+                                           
+                                            <th><i class="fa fa-trash" aria-hidden="true"></i></th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+
+                                        {% for materia in materias %}
+                                        <tr>
+                                            <td><a href="">{{ materia['geral']['titulo'] }}</a></td>
+                                            <td>{{ materia['geral']['idioma'] }}</td>
+                                            <td>{{ 
+                                                materia['geral']['palavras_chave'][0] + ', ' +  
+                                                materia['geral']['palavras_chave'][1]  + ', ' +  
+                                                materia['geral']['palavras_chave'][2]  + ', ' +
+                                                materia['geral']['palavras_chave'][3]  + ', ' + 
+                                                materia['geral']['palavras_chave'][4]
+                                            }}</td>
+                                            <td>{{ materia['metadados_tecnicos']['tamanho'] }}</td>
+        
+                                            <td>
+                                                <a href="" class="trash-item">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+ <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+
+
+{% endblock %}
