@@ -30,7 +30,7 @@
         <div style="color: red"> Insira um nome</div>
         {% endif %}
 
-        {% if form.validate_on_submit() and pages_found%}
+        {% if form.validate_on_submit() and pages%}
         <br/>
         <br/>
         <br/>
@@ -58,11 +58,11 @@
                             
                             <tbody>
                                
-                                {% for page in pages_found %}
+                                {% for page in pages%}
                                 <tr>
-                                    <td>{{ page }}</td>
+                                    <td>{{ page[0] }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-secondary btn-icon-split">
+                                        <a href="{{ url_for('adicionarPage', pageNumber=page[1]) }}" class="btn btn-secondary btn-icon-split">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-arrow-right"></i>
                                             </span>
@@ -80,7 +80,7 @@
                 </div>
             </div>
            
-            {% elif form.validate_on_submit() and not pages_found%}
+            {% elif form.validate_on_submit() and not pages%}
             <br/>
             <br/>
             <br/>
