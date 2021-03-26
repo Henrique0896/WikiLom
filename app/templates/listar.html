@@ -1,0 +1,292 @@
+{% extends 'base.html' %}
+
+{% block title %} WikiLOM - {{page['geral']['titulo']}} {% endblock %}
+
+{% block main %}
+
+    
+    <div class="container-fluid" style="margin: auto">
+        <h3 style="margin-bottom: 25px;" >{{page['geral']['titulo']}}</h3>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <br/>
+                            <h4 class="m-0 font-weight-bold text-primary">Geral</h4>
+                            <br/>
+                        </div>
+
+                       
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <p><b>Título:</b> {{page['geral']['titulo']}}</p>
+                                        <p><b>Idioma:</b> {{page['geral']['idioma']}}</p>
+                                        <p><b>Descrição:</b> {{page['geral']['descricao']}}</p>
+                                        <p><b>Palavras Chave:</b> {{page['geral']['palavras_chave']}}</p>
+                                        <p><b>Cobertura:</b> {{page['geral']['cobertura']}}</p>
+                                        <p><b>Estrutura:</b> {{page['geral']['estrutura']}}</p>
+                                        <p><b>Nível de Agregação:</b> {{page['geral']['nivel_de_agregacao']}}</p>
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+                       
+                    </div>
+
+
+
+                     <!-- DataTales Example -->
+                     <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <br/>
+                            <h4 class="m-0 font-weight-bold text-primary">Ciclo de Vida</h4>
+                            <br/>
+                        </div>
+
+                       
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <p><b>1. Versão:</b> {{page['ciclo_de_vida']['versao']}}</p>
+                                        <p><b>2. Status:</b> {{page['ciclo_de_vida']['status']}}</p>
+                                        <p><b> 3. Contribuinte:</b><br/>
+                                            <div style="margin-left: 15px;">
+                                            <p><b> 3.1 Entidade:</b> {{page['ciclo_de_vida']['contribuinte']['entidade']}}</p>
+                                            <p><b>3.2 Data:</b> {{page['ciclo_de_vida']['contribuinte']['data']}}</p>
+                                            <p><b>3.3 Papel:</b> {{page['ciclo_de_vida']['contribuinte']['papel']}}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+                       
+                    </div>
+
+
+
+
+                  <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <br/>
+                        <h4 class="m-0 font-weight-bold text-primary">Meta Metadados</h4>
+                        <br/>
+                    </div>
+
+                   
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <p><b>Título:</b> {{page['geral']['titulo']}}</p>
+                                    <p><b>Idioma:</b> {{page['geral']['idioma']}}</p>
+                                    <p><b>Descrição:</b> {{page['geral']['descricao']}}</p>
+                                    <p><b>Palavras Chave:</b> {{page['geral']['palavras_chave']}}</p>
+                                    <p><b>Cobertura:</b> {{page['geral']['cobertura']}}</p>
+                                    <p><b>Estrutura:</b> {{page['geral']['estrutura']}}</p>
+                                    <p><b>Nível de Agregação:</b> {{page['geral']['nivel_de_agregacao']}}</p>
+                                </div>
+                            </div>
+                         
+                        </div>
+                    </div>
+                   
+                </div>
+
+
+                <div class="card shadow mb-4">
+                      
+                    <div class="card-header py-3">
+                        <br/>
+                        <h4 class="m-0 font-weight-bold text-primary">Meta Técnicos</h4>
+                        <br/>
+                    </div>
+
+                   
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <p><b>1. Esquema de Metadados:</b> {{page['metadados_tecnicos']['formato']}}</p>
+                                    <p><b>2. Idioma:</b> {{page['metadados_tecnicos']['tamanho']}}</p>
+                                    <p><b>3. Localização:</b> {{page['metadados_tecnicos']['localizacao']}}</p>
+                                    <p><b>4. Requisitos:</b> {{page['metadados_tecnicos']['requisitos']}}</p>
+                                    <p><b>5. Observações de Instalações:</b> {{page['metadados_tecnicos']['observacoes_de_Instalacoes']}}</p>
+                                    <p><b>6. Outros Requisitos de Sistema:</b> {{page['metadados_tecnicos']['outros_requisitos_de_sistema']}}</p>
+                                    <p><b>7. Duração:</b> {{page['metadados_tecnicos']['duracao']}}</p>
+                                </div>
+                            </div>
+                         
+                        </div>
+                </div>
+                </div>
+
+
+
+                   <!-- DataTales Example -->
+                   <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <br/>
+                        <h4 class="m-0 font-weight-bold text-primary">Aspectos Educacionais</h4>
+                        <br/>
+                    </div>
+
+                   
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <p><b>1. Tipo de iteratividade:</b> {{page['aspectos_educacionais']['tipo_de_iteratividade']}}</p>
+                                    <p><b>2. Tipo de recurso de aprendizado:</b> {{page['aspectos_educacionais']['tipo_de_recurso_de_aprendizado']}}</p>
+                                    <p><b>3. Nível de iteratividade:</b> {{page['aspectos_educacionais']['nivel_de_interatividade']}}</p>
+                                    <p><b>4. Densidade Semantica:</b> {{page['aspectos_educacionais']['densidade_semantica']}}</p>
+                                    <p><b>5. Usuário final:</b> {{page['aspectos_educacionais']['usuario_final']}}</p>
+                                    <p><b>6. Contexto de aprendizagem:</b> {{page['aspectos_educacionais']['contexto_de_aprendizagem']}}</p>
+                                    <p><b>7. Idade Recomendada:</b> {{page['aspectos_educacionais']['idade_recomendada']}}</p>
+                                    <p><b>8. Grau de Dificuldade:</b> {{page['aspectos_educacionais']['grau_de_dificuldade']}}</p>
+                                    <p><b>9. Tempo de Aprendizado:</b> {{page['aspectos_educacionais']['tempo_de_aprendizado']}}</p>
+                                    <p><b>10. Descrição:</b> {{page['aspectos_educacionais']['descricao']}}</p>
+                                    <p><b>11. Linguagem:</b> {{page['aspectos_educacionais']['linguagem']}}</p>
+
+                                </div>
+                            </div>
+                         
+                        </div>
+                    </div>
+                  </div>
+                
+
+
+
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <br/>
+                            <h4 class="m-0 font-weight-bold text-primary">Direitos</h4>
+                            <br/>
+                        </div>
+    
+                       
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <p><b>1. Custo:</b> {{page['direitos']['custo']}}</p>
+                                        <p><b>2. Direitos Autorais:</b> {{page['direitos']['direitos_autorais']}}</p>
+                                        <p><b>3. Descrição:</b> {{page['direitos']['descricao']}}</p>
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                                          <!-- DataTales Example -->
+                  <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <br/>
+                        <h4 class="m-0 font-weight-bold text-primary">Relações</h4>
+                        <br/>
+                    </div>
+
+                   
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <p><b>1. Gênero:</b> {{page['relacoes']['genero']}}</p>
+                                    <p><b>2. Recurso:</b> {{page['relacoes']['recurso']}}</p>
+                                    <div style="margin-left: 15px;">
+                                        <p><b> 2.1 Catálogo:</b> {{page['relacoes']['recurso']['referencias']}}</p>
+                                        <p><b>2.2 Entrada:</b> {{page['relacoes']['recurso']['links_externos']}}</p></p></div>
+                                </div>
+                            </div>
+                         
+                        </div>
+                    </div>
+                  </div>
+
+
+
+
+
+                                           <!-- DataTales Example -->
+                                           <div class="card shadow mb-4">
+                                            <div class="card-header py-3">
+                                                <br/>
+                                                <h4 class="m-0 font-weight-bold text-primary">Classificação</h4>
+                                                <br/>
+                                            </div>
+                        
+                                           
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <div class="row">
+                                                        <div class="col-sm">
+                                                            <p><b>1. Finalidade:</b> {{page['classificacao']['finalidade']}}</p>
+                                                            <p><b>2. Diretório:</b> {{page['classificacao']['diretorio']}}</p>
+                                                            <p><b>3. Descrição:</b> {{page['classificacao']['descricao']}}</p>
+                                                            <p><b>4. Palavra Chave:</b> {{page['classificacao']['palavra_chave']}}</p>
+                                                        </div>
+                                                    </div>
+                                                 
+                                                </div>
+                                            </div>
+                                           </div>
+
+
+                                                          <!-- DataTales Example -->
+                                                          <div class="card shadow mb-4">
+                                                            <div class="card-header py-3">
+                                                                <br/>
+                                                                <h4 class="m-0 font-weight-bold text-primary">Conteúdo</h4>
+                                                                <br/>
+                                                            </div>
+                                        
+                                                           
+                                                            <div class="card-body">
+                                                                <div class="table-responsive">
+                                                                    <div class="row">
+                                                                        <div class="col-sm">
+                                                                            <p><b>1. Data:</b> {{page['conteudo']['data']}}</p>
+                                                                            <p><b>2. Entidade:</b> {{page['conteudo']['entidade']}}</p>
+                                                                            <p><b>3. Imagens:</b> {{page['conteudo']['imagens']}}</p>
+                                                                            <p><b>4. Comentários:</b> {{page['conteudo']['comentarios']}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                 
+                                                                </div>
+                                                            </div>
+                                        
+                                        
+                                        
+                                                        </div>
+                                        
+
+
+
+
+            <a style="margin-top: 20px;" href="/" class="btn btn-info btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-home"></i>
+                </span>
+                <span class="text">Voltar</span>
+            </a>
+   
+
+       
+        <div style="padding: 220px;"></div>
+        
+    </div>
+
+       
+{% endblock %}

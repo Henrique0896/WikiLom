@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %} WikiLOM - Adicionar Matéria {% endblock %}
+
+{% block main %}
+
+    
+    <div class="container-fluid" style="margin: auto">
+
+        <h3>Pesquisar no Banco</h3>
+   
+
+        <form action="" method="POST" style="display: flex; flex-direction: row;">
+            {{ form.csrf_token }}
+            <div>
+                <label>Pesquisar Por:</label>
+                {{form.pesquisa(class="form-control")}}
+                <label>Em:</label>
+                {{form.subject(class="form-control")}}
+            </div>
+            <div style="margin-left: 10px; margin-top: 100px;">
+            <button type="submit" class="btn btn-light btn-icon-split">
+            
+                <span class="icon text-gray-600">
+                    <i class="fas fa-arrow-right"></i>
+                </span>
+                <span class="text">Pesquisar</span>
+            </button>
+        </div>
+        </form>
+        {% if form.errors.pesquisa%}
+        <div style="color: red"> Insira um nome</div>
+        {% endif %}
+
+        {% if form.validate_on_submit() and pages%}
+        <br/>
+        <br/>
+        <br/>
+        
+             <h4>Resultado da Pesquisa</h3>
+
+             <!-- DataTales Example -->
+             <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <br/>
+                    <h6 class="m-0 font-weight-bold text-primary">Você irá encontrar '{{filtro}}' em:
+                    </h6>
+                    <br/>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nome da Matéria do Wikipédia</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                
+                               
+                                {% for page in pages%}
+                                <tr>
+                                    <td>{{ page }}</td>
+
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+           
+            {% elif form.validate_on_submit() and not pages%}
+            <br/>
+            <br/>
+            <br/>
+            <h5 style="color: red">Nenhum Resultado Encontrado</h4>
+        {% endif %}
+
+        <div style="padding: 180px;"></div>
+        
+    </div>
+
+       
+{% endblock %}

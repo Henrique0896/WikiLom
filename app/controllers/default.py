@@ -1,13 +1,14 @@
 from app import app
 from flask import render_template
 from app import db
-from app.models.forms import addMateria
+from app.models.forms import campoPesquisa, filtroDeDados
 import wikipedia
 import json
 from ..models.tables import LearningObject
+from .keys import keys
 
 pages_found = None
-instance_list = None
+instance_list = db.list("learning_object")
 
 
 
@@ -31,7 +32,7 @@ def index():
 # Pesquisa qual materia será adicionada
 @app.route("/adicionar", methods=['POST', 'GET' ])
 def adicionar():
-    form = addMateria()
+    form = campoPesquisa()
     global pages_found
     pages_found = None
     pages = None
@@ -74,3 +75,42 @@ def excluirPage(pageNumber):
     db.delete("learning_object", instance_list[int(pageNumber)])
 
     return render_template('removido.html', page_title=page_title)
+
+
+
+#Listar materia ao banco
+@app.route("/listar/<pageNumber>", methods=[ 'GET' ])
+def listarPage(pageNumber):
+    global instance_list
+    page = instance_list[int(pageNumber)]
+
+    return render_template('listar.html', page=page)
+
+
+
+# Pesquisar materia no banco
+@app.route("/pesquisar", methods=['POST', 'GET' ])
+def pesquisar():
+    form = filtroDeDados()
+    pages = None
+    filtro = None
+    if form.validate_on_submit():
+        pages = []
+        filtro = form.pesquisa.data
+        campo = form.subject.data
+        resultados = []
+        for value in keys[campo].values():
+            resultado = db.filter_by('learning_object', { value: filtro })
+            if(resultado):
+                resultados.append(resultado)
+        for resultado in resultados:
+            for materia in resultado:
+                pages.append(materia['geral']['titulo'])
+            
+        print(pages)
+
+
+        
+    else:
+        print(form.errors)
+    return render_template('pesquisar.html', form=form, pages=pages, filtro=filtro)
