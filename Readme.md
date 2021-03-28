@@ -16,6 +16,7 @@ Tiago Campos</br>
 <a href="https://www.br.freelancer.com/community/articles/crud-operations-in-mongodb-using-python">https://www.br.freelancer.com/community/articles/crud-operations-in-mongodb-using-python </a><br />
 <a href="https://zetcode.com/python/pymongo/">https://zetcode.com/python/pymongo/ </a><br />
 <a href="https://docs.mongodb.com/manual/reference/">https://docs.mongodb.com/manual/reference/ </a><br />
+<a href="https://flask.palletsprojects.com/en/1.1.x/">https://flask.palletsprojects.com/en/1.1.x/ </a><br />
 
 ### Configuration
 
