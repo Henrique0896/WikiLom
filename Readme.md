@@ -15,7 +15,6 @@ Tiago Campos</br>
 ### References:
 <a href="https://www.br.freelancer.com/community/articles/crud-operations-in-mongodb-using-python">https://www.br.freelancer.com/community/articles/crud-operations-in-mongodb-using-python </a><br />
 <a href="https://zetcode.com/python/pymongo/">https://zetcode.com/python/pymongo/ </a><br />
-<a href="https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/">https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/ </a>
 <a href="https://docs.mongodb.com/manual/reference/">https://docs.mongodb.com/manual/reference/ </a><br />
 
 ### Configuration
