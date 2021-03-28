@@ -1,6 +1,6 @@
 ### Developed by:
-<i>Douglas Sales </br>
 Henrique de Lima</br>
+<i>Douglas Sales </br>
 Caliny</br>
 Tiago Campos</br>
 </i>
