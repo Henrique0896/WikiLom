@@ -16,32 +16,45 @@
             <br />
         </div>
 
+        <form action="" method="POST">
+            {{ form.csrf_token }}
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div class="row">
+                        <div class="col-sm">
 
-        <div class="card-body">
-            <div class="table-responsive">
-                <div class="row">
-                    <div class="col-sm">
-                        <p><b>Título:</b> {{page['geral']['titulo']}}</p>
-                        <p><b>Idioma:</b> {{page['geral']['idioma']}}</p>
-                        <p><b>Descrição:</b> {{page['geral']['descricao']}}</p>
-                        <p><b>Palavras Chave:</b> {{page['geral']['palavras_chave']}}</p>
-                        <p><b>Cobertura:</b> {{page['geral']['cobertura']}}</p>
-                        <p><b>Estrutura:</b> {{page['geral']['estrutura']}}</p>
-                        <p><b>Nível de Agregação:</b> {{page['geral']['nivel_de_agregacao']}}</p>
+                            <div>
+                                <label>Título:</label>
+                                {{form.titulo(class="form-control")}}
+                                <label>Idioma:</label>
+                                {{form.idioma(class="form-control")}}
+                                <label>Descrição:</label>
+                                {{form.descricao(class="form-control")}}
+                                <label>Palavras Chave:</label>
+                                {{form.palavrasChave(class="form-control")}}
+                                <label>Cobertura:</label>
+                                {{form.cobertura(class="form-control")}}
+                                <label>Estrutura:</label>
+                                {{form.estrutura(class="form-control")}}
+                            </div>
+
+
+
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
-        <!-- Botão Editar -->
-        <div style="margin-bottom: 30px; margin-left: 15px ;">
-            <a href="{{ url_for('editarGeral', pageNumber=pageNumber) }}" class="btn btn-warning btn-icon-split">
-                <span class="icon text-white-50">
-                    <i class="fas fa-pen"></i>
-                </span>
-                <span class="text">Editar</span>
-            </a>
-        </div>
+            <!-- Botão Salvar -->
+            <div style="margin-bottom: 30px; margin-left: 15px ;">
+                <button type="submit" class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <span class="text">Salvar</span>
+                </button>
+            </div>
+        </form>
 
     </div>
 
@@ -77,8 +90,8 @@
             </div>
         </div>
 
-         <!-- Botão Editar -->
-         <div style="margin-bottom: 30px; margin-left: 15px ;">
+        <!-- Botão Editar -->
+        <div style="margin-bottom: 30px; margin-left: 15px ;">
             <a href="#" class="btn btn-warning btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-pen"></i>
@@ -118,8 +131,8 @@
             </div>
         </div>
 
-         <!-- Botão Editar -->
-         <div style="margin-bottom: 30px; margin-left: 15px ;">
+        <!-- Botão Editar -->
+        <div style="margin-bottom: 30px; margin-left: 15px ;">
             <a href="#" class="btn btn-warning btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-pen"></i>
@@ -158,8 +171,8 @@
 
             </div>
         </div>
-         <!-- Botão Editar -->
-         <div style="margin-bottom: 30px; margin-left: 15px ;">
+        <!-- Botão Editar -->
+        <div style="margin-bottom: 30px; margin-left: 15px ;">
             <a href="#" class="btn btn-warning btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-pen"></i>
@@ -206,8 +219,8 @@
             </div>
         </div>
 
-         <!-- Botão Editar -->
-         <div style="margin-bottom: 30px; margin-left: 15px ;">
+        <!-- Botão Editar -->
+        <div style="margin-bottom: 30px; margin-left: 15px ;">
             <a href="#" class="btn btn-warning btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-pen"></i>
@@ -244,8 +257,8 @@
             </div>
         </div>
 
-         <!-- Botão Editar -->
-         <div style="margin-bottom: 30px; margin-left: 15px ;">
+        <!-- Botão Editar -->
+        <div style="margin-bottom: 30px; margin-left: 15px ;">
             <a href="#" class="btn btn-warning btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-pen"></i>
@@ -283,8 +296,8 @@
             </div>
         </div>
 
-         <!-- Botão Editar -->
-         <div style="margin-bottom: 30px; margin-left: 15px ;">
+        <!-- Botão Editar -->
+        <div style="margin-bottom: 30px; margin-left: 15px ;">
             <a href="#" class="btn btn-warning btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-pen"></i>
@@ -321,8 +334,8 @@
             </div>
         </div>
 
-         <!-- Botão Editar -->
-         <div style="margin-bottom: 30px; margin-left: 15px ;">
+        <!-- Botão Editar -->
+        <div style="margin-bottom: 30px; margin-left: 15px ;">
             <a href="#" class="btn btn-warning btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-pen"></i>
@@ -356,9 +369,9 @@
             </div>
         </div>
 
-         <!-- Botão Editar -->
-         <div style="margin-bottom: 30px; margin-left: 15px ;">
-            <a href="editar/geral/0" class="btn btn-warning btn-icon-split">
+        <!-- Botão Editar -->
+        <div style="margin-bottom: 30px; margin-left: 15px ;">
+            <a href="#" class="btn btn-warning btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-pen"></i>
                 </span>

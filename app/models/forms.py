@@ -12,4 +12,11 @@ class filtroDeDados(FlaskForm):
     ('aspectos_educacionais','Aspectos Educacionais'), ('direitos','Direitos'),
     ('relacoes','Relações'), ('classificacao','Classificação'), ('conteudo','Conteúdo')])
 
-
+class updateGeral(FlaskForm): 
+    titulo = StringField("titulo", validators=[DataRequired()])
+    idioma = StringField("idioma")
+    descricao = StringField("descricao")
+    palavrasChave = StringField("palavrasChave")
+    cobertura = StringField("cobertura")
+    estrutura = StringField("estrutura")
+    nivelDeAgregacao = StringField("nivelDeAgregacao")

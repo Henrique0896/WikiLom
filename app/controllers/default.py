@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, jsonify, Response
 from app import db
-from app.models.forms import campoPesquisa, filtroDeDados
+from app.models.forms import campoPesquisa, filtroDeDados, updateGeral
 import wikipedia
 import json
 from ..models.tables import LearningObject
@@ -100,8 +100,6 @@ def update(title, prop, data):
         else: raise Exception
 
         db.update("learning_object", page[0])
-        global instance_list
-        instance_list = db.list("learning_object")
         return Response({"success": True}, content_type="application/json; charset=utf-8")
     except:
         return Response({"success": False}, content_type="application/json; charset=utf-8")
@@ -180,7 +178,7 @@ def listarPage(pageNumber):
     global instance_list
     page = instance_list[int(pageNumber)]
 
-    return render_template('listar.html', page=page)
+    return render_template('listar.html', page=page, pageNumber=pageNumber)
 
 
 # Pesquisar materia no banco
@@ -204,3 +202,32 @@ def pesquisar():
     else:
         print(form.errors)
     return render_template('pesquisar.html', form=form, pages=pages, filtro=filtro)
+
+
+
+
+# Editar Geral
+@app.route("/editar/geral/<pageNumber>", methods=['GET', 'POST'])
+def editarGeral(pageNumber):
+    global instance_list
+    page = instance_list[int(pageNumber)]
+    
+    form = updateGeral()
+    
+
+    if form.validate_on_submit():
+        print("VALIDADO")
+        page['geral']['titulo'] = form.titulo.data
+        db.update("learning_object", page)
+        return render_template('listar.html', page=page, pageNumber=pageNumber)
+    else:
+        form.titulo.data = page['geral']['titulo']
+        form.idioma.data = page['geral']['idioma']
+        form.descricao.data = page['geral']['descricao']
+        form.palavrasChave.data = page['geral']['palavras_chave']
+        form.cobertura.data = page['geral']['cobertura']
+        form.estrutura.data = page['geral']['estrutura']
+        form.nivelDeAgregacao.data = page['geral']['nivel_de_agregacao']
+        print(form.errors)
+
+    return render_template('geral.html', page=page, form=form)
