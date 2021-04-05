@@ -213,11 +213,15 @@ def editarGeral(pageNumber):
     page = instance_list[int(pageNumber)]
     
     form = updateGeral()
-    
 
     if form.validate_on_submit():
-        print("VALIDADO")
         page['geral']['titulo'] = form.titulo.data
+        page['geral']['idioma'] = form.idioma.data
+        page['geral']['descricao'] = form.descricao.data
+        page['geral']['palavras_chave'] = form.palavrasChave.data
+        page['geral']['cobertura'] = form.cobertura.data
+        page['geral']['estrutura'] = form.estrutura.data
+        page['geral']['nivel_de_agregacao'] = form.nivelDeAgregacao.data
         db.update("learning_object", page)
         return render_template('listar.html', page=page, pageNumber=pageNumber)
     else:
