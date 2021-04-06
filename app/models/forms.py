@@ -20,3 +20,10 @@ class updateGeral(FlaskForm):
     cobertura = StringField("cobertura")
     estrutura = StringField("estrutura")
     nivelDeAgregacao = StringField("nivelDeAgregacao")
+
+class updateCliclo(FlaskForm):
+    versao = StringField("versao", validators=[DataRequired()])
+    status = StringField("status")
+    entidade = StringField("entidade")
+    data = StringField("data")
+    papel = StringField("papel")

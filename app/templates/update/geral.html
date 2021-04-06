@@ -79,7 +79,7 @@
                     <div class="col-sm">
                         <p><b>1. Versão:</b> {{page['ciclo_de_vida']['versao']}}</p>
                         <p><b>2. Status:</b> {{page['ciclo_de_vida']['status']}}</p>
-                        <p><b> 3. Contribuinte:</b><br />
+                        <p><b>3. Contribuinte:</b><br />
                         <div style="margin-left: 15px;">
                             <p><b> 3.1 Entidade:</b> {{page['ciclo_de_vida']['contribuinte']['entidade']}}</p>
                             <p><b>3.2 Data:</b> {{page['ciclo_de_vida']['contribuinte']['data']}}</p>
@@ -94,7 +94,7 @@
 
         <!-- Botão Editar -->
         <div style="margin-bottom: 30px; margin-left: 15px ;">
-            <a href="#" class="btn btn-warning btn-icon-split">
+            <a href="{{ url_for('editarCiclo', pageNumber=pageNumber) }}#ciclo" class="btn btn-warning btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-pen"></i>
                 </span>

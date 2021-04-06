@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, jsonify, Response
 from app import db
-from app.models.forms import campoPesquisa, filtroDeDados, updateGeral
+from app.models.forms import campoPesquisa, filtroDeDados, updateGeral, updateCliclo
 import wikipedia
 import json
 from ..models.tables import LearningObject
@@ -146,7 +146,7 @@ def adicionar():
     else:
         print(form.errors)
 
-    return render_template('adicionar.html', form=form, pages=pages)
+    return render_template('create/adicionar.html', form=form, pages=pages)
 
 
 # Adiciona materia ao banco
@@ -159,7 +159,7 @@ def adicionarPage(pageNumber):
     lom = json.dumps(learning_object.get_as_json(), indent=4)
     db.create("learning_object", learning_object)
 
-    return render_template('adicionado.html', page_title=page_title)
+    return render_template('create/adicionado.html', page_title=page_title)
 
 
 # Deletar materia ao banco
@@ -169,7 +169,7 @@ def excluirPage(pageNumber):
     page_title = instance_list[int(pageNumber)]['geral']['titulo']
     db.delete("learning_object", instance_list[int(pageNumber)])
 
-    return render_template('removido.html', page_title=page_title)
+    return render_template('delete/removido.html', page_title=page_title)
 
 
 # Listar materia ao banco
@@ -178,7 +178,7 @@ def listarPage(pageNumber):
     global instance_list
     page = instance_list[int(pageNumber)]
 
-    return render_template('listar.html', page=page, pageNumber=pageNumber)
+    return render_template('read/listar.html', page=page, pageNumber=pageNumber)
 
 
 # Pesquisar materia no banco
@@ -201,7 +201,7 @@ def pesquisar():
                 pages.append(materia['geral']['titulo'])
     else:
         print(form.errors)
-    return render_template('pesquisar.html', form=form, pages=pages, filtro=filtro)
+    return render_template('filter/pesquisar.html', form=form, pages=pages, filtro=filtro)
 
 
 
@@ -223,7 +223,7 @@ def editarGeral(pageNumber):
         page['geral']['estrutura'] = form.estrutura.data
         page['geral']['nivel_de_agregacao'] = form.nivelDeAgregacao.data
         db.update("learning_object", page)
-        return render_template('listar.html', page=page, pageNumber=pageNumber)
+        return render_template('read/listar.html', page=page, pageNumber=pageNumber)
     else:
         form.titulo.data = page['geral']['titulo']
         form.idioma.data = page['geral']['idioma']
@@ -234,4 +234,33 @@ def editarGeral(pageNumber):
         form.nivelDeAgregacao.data = page['geral']['nivel_de_agregacao']
         print(form.errors)
 
-    return render_template('geral.html', page=page, form=form)
+    return render_template('update/geral.html', page=page, form=form, pageNumber=pageNumber)
+
+
+
+# Editar Cliclo de Vida
+@app.route("/editar/ciclodevida/<pageNumber>", methods=['GET', 'POST'])
+def editarCiclo(pageNumber):
+    global instance_list
+    page = instance_list[int(pageNumber)]
+    
+    form = updateCliclo()
+
+    if form.validate_on_submit():
+        page['ciclo_de_vida']['versao'] = form.versao.data
+        page['ciclo_de_vida']['status'] = form.status.data
+        page['ciclo_de_vida']['contribuinte']['entidade'] = form.entidade.data
+        page['ciclo_de_vida']['contribuinte']['data'] = form.data.data
+        page['ciclo_de_vida']['contribuinte']['papel'] = form.papel.data
+        db.update("learning_object", page)
+        listarPage(pageNumber)
+        # return render_template('read/listar.html', page=page, pageNumber=pageNumber)
+    else:
+        form.versao.data = page['ciclo_de_vida']['versao']
+        form.status.data = page['ciclo_de_vida']['status']
+        form.entidade.data = page['ciclo_de_vida']['contribuinte']['entidade']
+        form.data.data = page['ciclo_de_vida']['contribuinte']['data']
+        form.papel.data = page['ciclo_de_vida']['contribuinte']['papel']
+        print(form.errors)
+
+    return render_template('update/ciclo.html', page=page, form=form, pageNumber=pageNumber)
