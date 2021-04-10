@@ -33,17 +33,17 @@
             <div class="card-header py-3">
                 <div class="d-sm-flex justify-content-between" style="margin-left: 15px; margin-top: 10px;">
                     <h4 class="m-0 font-weight-bold text-primary">Geral</h4>
-    
+
                     <!-- Botão Minimizar -->
                     <div id="minimizeGeral" style=" margin-top: -10px ;">
                         <a class="btn btn-info btn-circle">
                             <span class="icon text-white-50">
                                 <i class="fas fa-compress"></i>
                             </span>
-    
+
                         </a>
                     </div>
-    
+
                 </div>
             </div>
 
@@ -91,17 +91,17 @@
             <div class="card-header py-3">
                 <div class="d-sm-flex justify-content-between" style="margin-left: 15px; margin-top: 10px;">
                     <h4 class="m-0 font-weight-bold text-primary">Ciclo de Vida</h4>
-    
+
                     <!-- Botão Minimizar -->
                     <div id="minimizeCiclo" style=" margin-top: -10px ;">
                         <a class="btn btn-info btn-circle">
                             <span class="icon text-white-50">
                                 <i class="fas fa-compress"></i>
                             </span>
-    
+
                         </a>
                     </div>
-    
+
                 </div>
             </div>
 
@@ -142,17 +142,17 @@
             <div class="card-header py-3">
                 <div class="d-sm-flex justify-content-between" style="margin-left: 15px; margin-top: 10px;">
                     <h4 class="m-0 font-weight-bold text-primary">Meta Metadados</h4>
-    
+
                     <!-- Botão Minimizar -->
                     <div id="minimizeMeta" style=" margin-top: -10px ;">
                         <a class="btn btn-info btn-circle">
                             <span class="icon text-white-50">
                                 <i class="fas fa-compress"></i>
                             </span>
-    
+
                         </a>
                     </div>
-    
+
                 </div>
             </div>
 
@@ -193,17 +193,17 @@
             <div class="card-header py-3">
                 <div class="d-sm-flex justify-content-between" style="margin-left: 15px; margin-top: 10px;">
                     <h4 class="m-0 font-weight-bold text-primary">Meta Técnicos</h4>
-    
+
                     <!-- Botão Minimizar -->
                     <div id="minimizeMetadados" style=" margin-top: -10px ;">
                         <a class="btn btn-info btn-circle">
                             <span class="icon text-white-50">
                                 <i class="fas fa-compress"></i>
                             </span>
-    
+
                         </a>
                     </div>
-    
+
                 </div>
             </div>
 
@@ -212,15 +212,22 @@
                 <div class="table-responsive">
                     <div class="row">
                         <div class="col-sm">
-                            <p><b>1. Esquema de Metadados:</b> {{page['metadados_tecnicos']['formato']}}</p>
-                            <p><b>2. Idioma:</b> {{page['metadados_tecnicos']['tamanho']}}</p>
-                            <p><b>3. Localização:</b> {{page['metadados_tecnicos']['localizacao']}}</p>
-                            <p><b>4. Requisitos:</b> {{page['metadados_tecnicos']['requisitos']}}</p>
-                            <p><b>5. Observações de Instalações:</b>
-                                {{page['metadados_tecnicos']['observacoes_de_Instalacoes']}}</p>
-                            <p><b>6. Outros Requisitos de Sistema:</b>
-                                {{page['metadados_tecnicos']['outros_requisitos_de_sistema']}}</p>
-                            <p><b>7. Duração:</b> {{page['metadados_tecnicos']['duracao']}}</p>
+                            <div>
+                                <label>1. Formato:</label>
+                                {{form.m_formato(class="form-control")}}
+                                <label>2. Tamanho:</label>
+                                {{form.m_tamanho(class="form-control")}}
+                                <label>3. Localização:</label>
+                                {{form.m_localizacao(class="form-control")}}
+                                <label>4. Requisitos:</label>
+                                {{form.m_requisitos(class="form-control")}}
+                                <label>5. Observações de Instalações:</label>
+                                {{form.m_observacoes_de_Instalacoes(class="form-control")}}
+                                <label>6. Outros Requisitos de Sistema:</label>
+                                {{form.m_outros_requisitos_de_sistema(class="form-control")}}
+                                <label>7. Duração:</label>
+                                {{form.m_duracao(class="form-control")}}
+                            </div>
                         </div>
                     </div>
 
@@ -236,17 +243,17 @@
             <div class="card-header py-3">
                 <div class="d-sm-flex justify-content-between" style="margin-left: 15px; margin-top: 10px;">
                     <h4 class="m-0 font-weight-bold text-primary">Aspectos Educacionais</h4>
-    
+
                     <!-- Botão Minimizar -->
                     <div id="minimizeAspectos" style=" margin-top: -10px ;">
                         <a class="btn btn-info btn-circle">
                             <span class="icon text-white-50">
                                 <i class="fas fa-compress"></i>
                             </span>
-    
+
                         </a>
                     </div>
-    
+
                 </div>
             </div>
 
@@ -255,25 +262,31 @@
                 <div class="table-responsive">
                     <div class="row">
                         <div class="col-sm">
-                            <p><b>1. Tipo de iteratividade:</b>
-                                {{page['aspectos_educacionais']['tipo_de_iteratividade']}}
-                            </p>
-                            <p><b>2. Tipo de recurso de aprendizado:</b>
-                                {{page['aspectos_educacionais']['tipo_de_recurso_de_aprendizado']}}</p>
-                            <p><b>3. Nível de iteratividade:</b>
-                                {{page['aspectos_educacionais']['nivel_de_interatividade']}}</p>
-                            <p><b>4. Densidade Semantica:</b> {{page['aspectos_educacionais']['densidade_semantica']}}
-                            </p>
-                            <p><b>5. Usuário final:</b> {{page['aspectos_educacionais']['usuario_final']}}</p>
-                            <p><b>6. Contexto de aprendizagem:</b>
-                                {{page['aspectos_educacionais']['contexto_de_aprendizagem']}}</p>
-                            <p><b>7. Idade Recomendada:</b> {{page['aspectos_educacionais']['idade_recomendada']}}</p>
-                            <p><b>8. Grau de Dificuldade:</b> {{page['aspectos_educacionais']['grau_de_dificuldade']}}
-                            </p>
-                            <p><b>9. Tempo de Aprendizado:</b> {{page['aspectos_educacionais']['tempo_de_aprendizado']}}
-                            </p>
-                            <p><b>10. Descrição:</b> {{page['aspectos_educacionais']['descricao']}}</p>
-                            <p><b>11. Linguagem:</b> {{page['aspectos_educacionais']['linguagem']}}</p>
+                            
+                            <div>
+                                <label>1. Tipo de iteratividade:</label>
+                                {{form.ae_tipo_de_iteratividade(class="form-control")}}
+                                <label>2. Tipo de recurso de aprendizado:</label>
+                                {{form.ae_tipo_de_recurso_de_aprendizado(class="form-control")}}
+                                <label>3. Nível de iteratividade:</label>
+                                {{form.ae_nivel_de_interatividade(class="form-control")}}
+                                <label>4. Densidade Semantica:</label>
+                                {{form.ae_densidade_semantica(class="form-control")}}
+                                <label>5. Usuário final:</label>
+                                {{form.ae_usuario_final(class="form-control")}}
+                                <label>6. Contexto de aprendizagem:</label>
+                                {{form.ae_contexto_de_aprendizagem(class="form-control")}}
+                                <label>7. Idade Recomendada:</label>
+                                {{form.ae_idade_recomendada(class="form-control")}}
+                                <label>8. Grau de Dificuldade:</label>
+                                {{form.ae_grau_de_dificuldade(class="form-control")}}
+                                <label>9. Tempo de Aprendizado:</label>
+                                {{form.ae_tempo_de_aprendizado(class="form-control")}}
+                                <label>10. Descrição:</label>
+                                {{form.ae_descricao(class="form-control")}}
+                                <label>11. Linguagem:</label>
+                                {{form.ae_linguagem(class="form-control")}}
+                            </div>
 
                         </div>
                     </div>
@@ -293,17 +306,17 @@
             <div class="card-header py-3">
                 <div class="d-sm-flex justify-content-between" style="margin-left: 15px; margin-top: 10px;">
                     <h4 class="m-0 font-weight-bold text-primary">Direitos</h4>
-    
+
                     <!-- Botão Minimizar -->
                     <div id="minimizeDireitos" style=" margin-top: -10px ;">
                         <a class="btn btn-info btn-circle">
                             <span class="icon text-white-50">
                                 <i class="fas fa-compress"></i>
                             </span>
-    
+
                         </a>
                     </div>
-    
+
                 </div>
             </div>
 
@@ -312,9 +325,14 @@
                 <div class="table-responsive">
                     <div class="row">
                         <div class="col-sm">
-                            <p><b>1. Custo:</b> {{page['direitos']['custo']}}</p>
-                            <p><b>2. Direitos Autorais:</b> {{page['direitos']['direitos_autorais']}}</p>
-                            <p><b>3. Descrição:</b> {{page['direitos']['descricao']}}</p>
+                            <div>
+                                <label>1. Custo:</label>
+                                {{form.m_formato(class="form-control")}}
+                                <label>2. Direitos Autorais:</label>
+                                {{form.m_formato(class="form-control")}}
+                                <label>3. Descrição:</label>
+                                {{form.m_formato(class="form-control")}}
+                            </div>
                         </div>
                     </div>
 
@@ -331,17 +349,17 @@
             <div class="card-header py-3">
                 <div class="d-sm-flex justify-content-between" style="margin-left: 15px; margin-top: 10px;">
                     <h4 class="m-0 font-weight-bold text-primary">Relações</h4>
-    
+
                     <!-- Botão Minimizar -->
                     <div id="minimizeRelacoes" style=" margin-top: -10px ;">
                         <a class="btn btn-info btn-circle">
                             <span class="icon text-white-50">
                                 <i class="fas fa-compress"></i>
                             </span>
-    
+
                         </a>
                     </div>
-    
+
                 </div>
             </div>
 
@@ -350,13 +368,16 @@
                 <div class="table-responsive">
                     <div class="row">
                         <div class="col-sm">
-                            <p><b>1. Gênero:</b> {{page['relacoes']['genero']}}</p>
-                            <p><b>2. Recurso:</b> {{page['relacoes']['recurso']}}</p>
-                            <div style="margin-left: 15px;">
-                                <p><b> 2.1 Catálogo:</b> {{page['relacoes']['recurso']['referencias']}}</p>
-                                <p><b>2.2 Entrada:</b> {{page['relacoes']['recurso']['links_externos']}}</p>
-                                </p>
+                            <div>
+                                <label>1. Gênero:</label>
+                                {{form.m_formato(class="form-control")}}
+                                <p>2. Recurso</p>
+                                <label>2.1 Referências:</label>
+                                {{form.m_formato(class="form-control")}}
+                                <label>2.2 Links Externos:</label>
+                                {{form.m_formato(class="form-control")}}
                             </div>
+
                         </div>
                     </div>
 
@@ -374,17 +395,17 @@
             <div class="card-header py-3">
                 <div class="d-sm-flex justify-content-between" style="margin-left: 15px; margin-top: 10px;">
                     <h4 class="m-0 font-weight-bold text-primary">Classificação</h4>
-    
+
                     <!-- Botão Minimizar -->
                     <div id="minimizeClassificacao" style=" margin-top: -10px ;">
                         <a class="btn btn-info btn-circle">
                             <span class="icon text-white-50">
                                 <i class="fas fa-compress"></i>
                             </span>
-    
+
                         </a>
                     </div>
-    
+
                 </div>
             </div>
 
@@ -393,10 +414,16 @@
                 <div class="table-responsive">
                     <div class="row">
                         <div class="col-sm">
-                            <p><b>1. Finalidade:</b> {{page['classificacao']['finalidade']}}</p>
-                            <p><b>2. Diretório:</b> {{page['classificacao']['diretorio']}}</p>
-                            <p><b>3. Descrição:</b> {{page['classificacao']['descricao']}}</p>
-                            <p><b>4. Palavra Chave:</b> {{page['classificacao']['palavra_chave']}}</p>
+                            <div>
+                                <label>1. Finalidade:</label>
+                                {{form.m_formato(class="form-control")}}
+                                <label>2. Diretório:</label>
+                                {{form.m_formato(class="form-control")}}
+                                <label>3. Descrição:</label>
+                                {{form.m_formato(class="form-control")}}
+                                <label>4. Palavra Chave:</label>
+                                {{form.m_formato(class="form-control")}}
+                            </div>
                         </div>
                     </div>
 
@@ -410,17 +437,17 @@
             <div class="card-header py-3">
                 <div class="d-sm-flex justify-content-between" style="margin-left: 15px; margin-top: 10px;">
                     <h4 class="m-0 font-weight-bold text-primary">Conteúdo</h4>
-    
+
                     <!-- Botão Minimizar -->
                     <div id="minimizeConteudo" style=" margin-top: -10px ;">
                         <a class="btn btn-info btn-circle">
                             <span class="icon text-white-50">
                                 <i class="fas fa-compress"></i>
                             </span>
-    
+
                         </a>
                     </div>
-    
+
                 </div>
             </div>
 
@@ -429,10 +456,14 @@
                 <div class="table-responsive">
                     <div class="row">
                         <div class="col-sm">
-                            <p><b>1. Data:</b> {{page['conteudo']['data']}}</p>
-                            <p><b>2. Entidade:</b> {{page['conteudo']['entidade']}}</p>
-                            <p><b>3. Imagens:</b> {{page['conteudo']['imagens']}}</p>
-                            <p><b>4. Comentários:</b> {{page['conteudo']['comentarios']}}</p>
+                            <labe>1. Data:</labe>
+                            {{form.m_formato(class="form-control")}}
+                            <labe>2. Entidade:</labe>
+                            {{form.m_formato(class="form-control")}}
+                            <labe>3. Imagens:</labe>
+                            {{form.m_formato(class="form-control")}}
+                            <labe>4. Comentários:</labe>
+                            {{form.m_formato(class="form-control")}}
                         </div>
                     </div>
 
@@ -464,82 +495,82 @@
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<script>
-    $("#minimizeGeral").click(
-        function () {
-            if ($("#geral").is(":visible")) {
-                $("#geral").css("display", "none")
-            } else {
-                $("#geral").css("display", "block")
-            }
-        })
+    <script>
+        $("#minimizeGeral").click(
+            function () {
+                if ($("#geral").is(":visible")) {
+                    $("#geral").css("display", "none")
+                } else {
+                    $("#geral").css("display", "block")
+                }
+            })
         $("#minimizeCiclo").click(
-        function () {
-            if ($("#ciclo").is(":visible")) {
-                $("#ciclo").css("display", "none")
-            } else {
-                $("#ciclo").css("display", "block")
-            }
-        })
+            function () {
+                if ($("#ciclo").is(":visible")) {
+                    $("#ciclo").css("display", "none")
+                } else {
+                    $("#ciclo").css("display", "block")
+                }
+            })
         $("#minimizeMeta").click(
-        function () {
-            if ($("#meta").is(":visible")) {
-                $("#meta").css("display", "none")
-            } else {
-                $("#meta").css("display", "block")
-            }
-        })
+            function () {
+                if ($("#meta").is(":visible")) {
+                    $("#meta").css("display", "none")
+                } else {
+                    $("#meta").css("display", "block")
+                }
+            })
         $("#minimizeMetadados").click(
-        function () {
-            if ($("#metadados").is(":visible")) {
-                $("#metadados").css("display", "none")
-            } else {
-                $("#metadados").css("display", "block")
-            }
-        })
+            function () {
+                if ($("#metadados").is(":visible")) {
+                    $("#metadados").css("display", "none")
+                } else {
+                    $("#metadados").css("display", "block")
+                }
+            })
         $("#minimizeAspectos").click(
-        function () {
-            if ($("#aspectos").is(":visible")) {
-                $("#aspectos").css("display", "none")
-            } else {
-                $("#aspectos").css("display", "block")
-            }
-        })
+            function () {
+                if ($("#aspectos").is(":visible")) {
+                    $("#aspectos").css("display", "none")
+                } else {
+                    $("#aspectos").css("display", "block")
+                }
+            })
         $("#minimizeDireitos").click(
-        function () {
-            if ($("#direitos").is(":visible")) {
-                $("#direitos").css("display", "none")
-            } else {
-                $("#direitos").css("display", "block")
-            }
-        })
+            function () {
+                if ($("#direitos").is(":visible")) {
+                    $("#direitos").css("display", "none")
+                } else {
+                    $("#direitos").css("display", "block")
+                }
+            })
         $("#minimizeRelacoes").click(
-        function () {
-            if ($("#relacoes").is(":visible")) {
-                $("#relacoes").css("display", "none")
-            } else {
-                $("#relacoes").css("display", "block")
-            }
-        })
+            function () {
+                if ($("#relacoes").is(":visible")) {
+                    $("#relacoes").css("display", "none")
+                } else {
+                    $("#relacoes").css("display", "block")
+                }
+            })
         $("#minimizeClassificacao").click(
-        function () {
-            if ($("#classificacao").is(":visible")) {
-                $("#classificacao").css("display", "none")
-            } else {
-                $("#classificacao").css("display", "block")
-            }
-        })
+            function () {
+                if ($("#classificacao").is(":visible")) {
+                    $("#classificacao").css("display", "none")
+                } else {
+                    $("#classificacao").css("display", "block")
+                }
+            })
         $("#minimizeConteudo").click(
-        function () {
-            if ($("#conteudo").is(":visible")) {
-                $("#conteudo").css("display", "none")
-            } else {
-                $("#conteudo").css("display", "block")
-            }
-        })
-</script>
+            function () {
+                if ($("#conteudo").is(":visible")) {
+                    $("#conteudo").css("display", "none")
+                } else {
+                    $("#conteudo").css("display", "block")
+                }
+            })
+    </script>
 
 
 

@@ -33,7 +33,7 @@ class updateGeral(FlaskForm):
     c_data = StringField("c_data")
     c_papel = StringField("c_papel")
     esquema_de_metadados = StringField("esquema_de_metadados")
-    m_idioma = StringField("idioma")
+    m_idioma = StringField("m_idioma")
 
     m_formato = StringField("m_formato")
     m_tamanho = StringField("m_tamanho")

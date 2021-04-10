@@ -222,11 +222,13 @@ def editarGeral(pageNumber):
         page['geral']['cobertura'] = form.cobertura.data
         page['geral']['estrutura'] = form.estrutura.data
         page['geral']['nivel_de_agregacao'] = form.nivelDeAgregacao.data
+        
         page['ciclo_de_vida']['versao'] = form.versao.data
         page['ciclo_de_vida']['status'] = form.status.data
         page['ciclo_de_vida']['contribuinte']['entidade'] = form.entidade.data
         page['ciclo_de_vida']['contribuinte']['data'] = form.data.data
         page['ciclo_de_vida']['contribuinte']['papel'] = form.papel.data
+        
         page['meta_metadados']['identificador']['catalogo'] = form.i_catalogo.data
         page['meta_metadados']['identificador']['entrada'] = form.i_entrada.data
         page['meta_metadados']['contribuinte']['entidade'] = form.c_entidade.data
@@ -234,6 +236,27 @@ def editarGeral(pageNumber):
         page['meta_metadados']['contribuinte']['papel'] = form.c_papel.data
         page['meta_metadados']['esquema_de_metadados'] = form.esquema_de_metadados.data
         page['meta_metadados']['idioma'] = form.m_idioma.data
+        
+        page['metadados_tecnicos']['formato'] = form.m_formato.data
+        page['metadados_tecnicos']['tamanho'] = form.m_tamanho.data
+        page['metadados_tecnicos']['localizacao'] = form.m_localizacao.data
+        page['metadados_tecnicos']['requisitos'] = form.m_requisitos.data
+        page['metadados_tecnicos']['observacoes_de_Instalacoes'] = form.m_observacoes_de_Instalacoes.data
+        page['metadados_tecnicos']['outros_requisitos_de_sistema'] = form.m_outros_requisitos_de_sistema.data
+        page['metadados_tecnicos']['duracao'] = form.m_duracao.data
+
+        page['aspectos_educacionais']['tipo_de_iteratividade'] = form.ae_tipo_de_iteratividade.data
+        page['aspectos_educacionais']['tipo_de_recurso_de_aprendizado'] = form.ae_tipo_de_recurso_de_aprendizado.data
+        page['aspectos_educacionais']['nivel_de_interatividade'] = form.ae_nivel_de_interatividade.data
+        page['aspectos_educacionais']['densidade_semantica'] = form.ae_densidade_semantica.data
+        page['aspectos_educacionais']['usuario_final'] = form.ae_usuario_final.data
+        page['aspectos_educacionais']['contexto_de_aprendizagem'] = form.ae_contexto_de_aprendizagem.data
+        page['aspectos_educacionais']['idade_recomendada'] = form.ae_idade_recomendada.data
+        page['aspectos_educacionais']['grau_de_dificuldade'] = form.ae_grau_de_dificuldade.data
+        page['aspectos_educacionais']['tempo_de_aprendizado'] = form.ae_tempo_de_aprendizado.data
+        page['aspectos_educacionais']['descricao'] = form.ae_descricao.data
+        page['aspectos_educacionais']['linguagem'] = form.ae_linguagem.data
+          
         db.update("learning_object", page)
         return render_template('read/listar.html', page=page, pageNumber=pageNumber)
     else:
@@ -244,18 +267,41 @@ def editarGeral(pageNumber):
         form.cobertura.data = page['geral']['cobertura']
         form.estrutura.data = page['geral']['estrutura']
         form.nivelDeAgregacao.data = page['geral']['nivel_de_agregacao']
+        
         form.versao.data = page['ciclo_de_vida']['versao']
         form.status.data = page['ciclo_de_vida']['status']
         form.entidade.data = page['ciclo_de_vida']['contribuinte']['entidade']
         form.data.data = page['ciclo_de_vida']['contribuinte']['data']
         form.papel.data = page['ciclo_de_vida']['contribuinte']['papel']
+
         form.i_catalogo.data = page['meta_metadados']['identificador']['catalogo']
         form.i_entrada.data = page['meta_metadados']['identificador']['entrada']
         form.c_entidade.data = page['meta_metadados']['contribuinte']['entidade']
         form.c_data.data = page['meta_metadados']['contribuinte']['data']
         form.c_papel.data = page['meta_metadados']['contribuinte']['papel']
         form.esquema_de_metadados.data = page['meta_metadados']['esquema_de_metadados']
-        form.idioma.data = page['meta_metadados']['idioma']
+        form.m_idioma.data = page['meta_metadados']['idioma']
+
+        form.m_formato.data = page['metadados_tecnicos']['formato']
+        form.m_tamanho.data = page['metadados_tecnicos']['tamanho']
+        form.m_localizacao.data = page['metadados_tecnicos']['localizacao']
+        form.m_requisitos.data = page['metadados_tecnicos']['requisitos']
+        form.m_observacoes_de_Instalacoes.data = page['metadados_tecnicos']['observacoes_de_Instalacoes']
+        form.m_outros_requisitos_de_sistema.data = page['metadados_tecnicos']['outros_requisitos_de_sistema']
+        form.m_duracao.data = page['metadados_tecnicos']['duracao']
+
+        form.ae_tipo_de_iteratividade.data = page['aspectos_educacionais']['tipo_de_iteratividade']
+        form.ae_tipo_de_recurso_de_aprendizado.data = page['aspectos_educacionais']['tipo_de_recurso_de_aprendizado']
+        form.ae_nivel_de_interatividade.data = page['aspectos_educacionais']['nivel_de_interatividade']
+        form.ae_densidade_semantica.data = page['aspectos_educacionais']['densidade_semantica']
+        form.ae_usuario_final.data = page['aspectos_educacionais']['usuario_final']
+        form.ae_contexto_de_aprendizagem.data = page['aspectos_educacionais']['contexto_de_aprendizagem']
+        form.ae_idade_recomendada.data = page['aspectos_educacionais']['idade_recomendada']
+        form.ae_grau_de_dificuldade.data = page['aspectos_educacionais']['grau_de_dificuldade']
+        form.ae_tempo_de_aprendizado.data = page['aspectos_educacionais']['tempo_de_aprendizado']
+        form.ae_descricao.data = page['aspectos_educacionais']['descricao']
+        form.ae_linguagem.data = page['aspectos_educacionais']['linguagem']
+
         print(form.errors)
 
     return render_template('update/geral.html', page=page, form=form, pageNumber=pageNumber)
