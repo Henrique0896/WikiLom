@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, jsonify, Response
 from app import db
-from app.models.forms import campoPesquisa, filtroDeDados, updateGeral, updateCliclo
+from app.models.forms import campoPesquisa, filtroDeDados, updateGeral
 import wikipedia
 import json
 from ..models.tables import LearningObject
@@ -207,7 +207,7 @@ def pesquisar():
 
 
 # Editar Geral
-@app.route("/editar/geral/<pageNumber>", methods=['GET', 'POST'])
+@app.route("/editar/<pageNumber>", methods=['GET', 'POST'])
 def editarGeral(pageNumber):
     global instance_list
     page = instance_list[int(pageNumber)]
@@ -222,6 +222,18 @@ def editarGeral(pageNumber):
         page['geral']['cobertura'] = form.cobertura.data
         page['geral']['estrutura'] = form.estrutura.data
         page['geral']['nivel_de_agregacao'] = form.nivelDeAgregacao.data
+        page['ciclo_de_vida']['versao'] = form.versao.data
+        page['ciclo_de_vida']['status'] = form.status.data
+        page['ciclo_de_vida']['contribuinte']['entidade'] = form.entidade.data
+        page['ciclo_de_vida']['contribuinte']['data'] = form.data.data
+        page['ciclo_de_vida']['contribuinte']['papel'] = form.papel.data
+        page['meta_metadados']['identificador']['catalogo'] = form.i_catalogo.data
+        page['meta_metadados']['identificador']['entrada'] = form.i_entrada.data
+        page['meta_metadados']['contribuinte']['entidade'] = form.c_entidade.data
+        page['meta_metadados']['contribuinte']['data'] = form.c_data.data
+        page['meta_metadados']['contribuinte']['papel'] = form.c_papel.data
+        page['meta_metadados']['esquema_de_metadados'] = form.esquema_de_metadados.data
+        page['meta_metadados']['idioma'] = form.m_idioma.data
         db.update("learning_object", page)
         return render_template('read/listar.html', page=page, pageNumber=pageNumber)
     else:
@@ -232,35 +244,47 @@ def editarGeral(pageNumber):
         form.cobertura.data = page['geral']['cobertura']
         form.estrutura.data = page['geral']['estrutura']
         form.nivelDeAgregacao.data = page['geral']['nivel_de_agregacao']
+        form.versao.data = page['ciclo_de_vida']['versao']
+        form.status.data = page['ciclo_de_vida']['status']
+        form.entidade.data = page['ciclo_de_vida']['contribuinte']['entidade']
+        form.data.data = page['ciclo_de_vida']['contribuinte']['data']
+        form.papel.data = page['ciclo_de_vida']['contribuinte']['papel']
+        form.i_catalogo.data = page['meta_metadados']['identificador']['catalogo']
+        form.i_entrada.data = page['meta_metadados']['identificador']['entrada']
+        form.c_entidade.data = page['meta_metadados']['contribuinte']['entidade']
+        form.c_data.data = page['meta_metadados']['contribuinte']['data']
+        form.c_papel.data = page['meta_metadados']['contribuinte']['papel']
+        form.esquema_de_metadados.data = page['meta_metadados']['esquema_de_metadados']
+        form.idioma.data = page['meta_metadados']['idioma']
         print(form.errors)
 
     return render_template('update/geral.html', page=page, form=form, pageNumber=pageNumber)
 
 
 
-# Editar Cliclo de Vida
-@app.route("/editar/ciclodevida/<pageNumber>", methods=['GET', 'POST'])
-def editarCiclo(pageNumber):
-    global instance_list
-    page = instance_list[int(pageNumber)]
+# # Editar Cliclo de Vida
+# @app.route("/editar/ciclodevida/<pageNumber>", methods=['GET', 'POST'])
+# def editarCiclo(pageNumber):
+#     global instance_list
+#     page = instance_list[int(pageNumber)]
     
-    form = updateCliclo()
+#     form = updateCliclo()
 
-    if form.validate_on_submit():
-        page['ciclo_de_vida']['versao'] = form.versao.data
-        page['ciclo_de_vida']['status'] = form.status.data
-        page['ciclo_de_vida']['contribuinte']['entidade'] = form.entidade.data
-        page['ciclo_de_vida']['contribuinte']['data'] = form.data.data
-        page['ciclo_de_vida']['contribuinte']['papel'] = form.papel.data
-        db.update("learning_object", page)
-        listarPage(pageNumber)
-        # return render_template('read/listar.html', page=page, pageNumber=pageNumber)
-    else:
-        form.versao.data = page['ciclo_de_vida']['versao']
-        form.status.data = page['ciclo_de_vida']['status']
-        form.entidade.data = page['ciclo_de_vida']['contribuinte']['entidade']
-        form.data.data = page['ciclo_de_vida']['contribuinte']['data']
-        form.papel.data = page['ciclo_de_vida']['contribuinte']['papel']
-        print(form.errors)
+#     if form.validate_on_submit():
+#         page['ciclo_de_vida']['versao'] = form.versao.data
+#         page['ciclo_de_vida']['status'] = form.status.data
+#         page['ciclo_de_vida']['contribuinte']['entidade'] = form.entidade.data
+#         page['ciclo_de_vida']['contribuinte']['data'] = form.data.data
+#         page['ciclo_de_vida']['contribuinte']['papel'] = form.papel.data
+#         db.update("learning_object", page)
+#         listarPage(pageNumber)
+#         # return render_template('read/listar.html', page=page, pageNumber=pageNumber)
+#     else:
+#         form.versao.data = page['ciclo_de_vida']['versao']
+#         form.status.data = page['ciclo_de_vida']['status']
+#         form.entidade.data = page['ciclo_de_vida']['contribuinte']['entidade']
+#         form.data.data = page['ciclo_de_vida']['contribuinte']['data']
+#         form.papel.data = page['ciclo_de_vida']['contribuinte']['papel']
+#         print(form.errors)
 
-    return render_template('update/ciclo.html', page=page, form=form, pageNumber=pageNumber)
+#     return render_template('update/ciclo.html', page=page, form=form, pageNumber=pageNumber)

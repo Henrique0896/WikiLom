@@ -68,11 +68,7 @@
                                             <td><a href="{{ url_for('listarPage', pageNumber=materia[1]) }}">{{ materia[0]['geral']['titulo'] }}</a></td>
                                             <td>{{ materia[0]['geral']['idioma'] }}</td>
                                             <td>{{ 
-                                                materia[0]['geral']['palavras_chave'][0] + ', ' +  
-                                                materia[0]['geral']['palavras_chave'][1]  + ', ' +  
-                                                materia[0]['geral']['palavras_chave'][2]  + ', ' +
-                                                materia[0]['geral']['palavras_chave'][3]  + ', ' + 
-                                                materia[0]['geral']['palavras_chave'][4]
+                                                materia[0]['geral']['palavras_chave']
                                             }}</td>
                                             <td>{{ materia[0]['metadados_tecnicos']['tamanho'] }}</td>
         
