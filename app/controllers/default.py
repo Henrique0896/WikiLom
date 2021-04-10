@@ -256,6 +256,24 @@ def editarGeral(pageNumber):
         page['aspectos_educacionais']['tempo_de_aprendizado'] = form.ae_tempo_de_aprendizado.data
         page['aspectos_educacionais']['descricao'] = form.ae_descricao.data
         page['aspectos_educacionais']['linguagem'] = form.ae_linguagem.data
+
+        page['direitos']['custo'] = form.d_custo.data
+        page['direitos']['direitos_autorais'] = form.d_direitos_autorais.data
+        page['direitos']['descricao'] = form.d_descricao.data
+
+        page['relacoes']['genero'] = form.r_genero.data
+        page['relacoes']['recurso']['referencias'] = form.r_recurso_referencias.data
+        page['relacoes']['recurso']['links_externos'] = form.r_recurso_links_externos.data
+
+        page['classificacao']['finalidade'] = form.c_finalidade.data
+        page['classificacao']['diretorio'] = form.c_diretorio.data
+        page['classificacao']['descricao'] = form.c_descricao.data
+        page['classificacao']['palavra_chave'] = form.c_palavra_chave.data
+
+        page['conteudo']['data'] = form.cont_data.data
+        page['conteudo']['entidade'] = form.cont_entidade.data 
+        page['conteudo']['imagens'] = form.cont_imagens.data
+        page['conteudo']['comentarios'] = form.cont_comentarios.data
           
         db.update("learning_object", page)
         return render_template('read/listar.html', page=page, pageNumber=pageNumber)
@@ -267,7 +285,7 @@ def editarGeral(pageNumber):
         form.cobertura.data = page['geral']['cobertura']
         form.estrutura.data = page['geral']['estrutura']
         form.nivelDeAgregacao.data = page['geral']['nivel_de_agregacao']
-        
+
         form.versao.data = page['ciclo_de_vida']['versao']
         form.status.data = page['ciclo_de_vida']['status']
         form.entidade.data = page['ciclo_de_vida']['contribuinte']['entidade']
@@ -301,6 +319,24 @@ def editarGeral(pageNumber):
         form.ae_tempo_de_aprendizado.data = page['aspectos_educacionais']['tempo_de_aprendizado']
         form.ae_descricao.data = page['aspectos_educacionais']['descricao']
         form.ae_linguagem.data = page['aspectos_educacionais']['linguagem']
+
+        form.d_custo.data = page['direitos']['custo']
+        form.d_direitos_autorais.data = page['direitos']['direitos_autorais']
+        form.d_descricao.data = page['direitos']['descricao']
+
+        form.r_genero.data = page['relacoes']['genero']
+        form.r_recurso_referencias.data = page['relacoes']['recurso']['referencias']
+        form.r_recurso_links_externos.data = page['relacoes']['recurso']['links_externos']
+
+        form.c_finalidade.data = page['classificacao']['finalidade']
+        form.c_diretorio.data = page['classificacao']['diretorio']
+        form.c_descricao.data = page['classificacao']['descricao']
+        form.c_palavra_chave.data = page['classificacao']['palavra_chave']
+
+        form.cont_data.data = page['conteudo']['data']
+        form.cont_entidade.data = page['conteudo']['entidade']
+        form.cont_imagens.data = page['conteudo']['imagens']
+        form.cont_comentarios.data = page['conteudo']['comentarios']
 
         print(form.errors)
 
