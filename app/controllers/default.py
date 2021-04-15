@@ -343,30 +343,8 @@ def editarGeral(pageNumber):
     return render_template('update/geral.html', page=page, form=form, pageNumber=pageNumber)
 
 
+# Mostrar Documentação da API
+@app.route("/doc-api", methods=['GET'])
+def documentacaoApi():
 
-# # Editar Cliclo de Vida
-# @app.route("/editar/ciclodevida/<pageNumber>", methods=['GET', 'POST'])
-# def editarCiclo(pageNumber):
-#     global instance_list
-#     page = instance_list[int(pageNumber)]
-    
-#     form = updateCliclo()
-
-#     if form.validate_on_submit():
-#         page['ciclo_de_vida']['versao'] = form.versao.data
-#         page['ciclo_de_vida']['status'] = form.status.data
-#         page['ciclo_de_vida']['contribuinte']['entidade'] = form.entidade.data
-#         page['ciclo_de_vida']['contribuinte']['data'] = form.data.data
-#         page['ciclo_de_vida']['contribuinte']['papel'] = form.papel.data
-#         db.update("learning_object", page)
-#         listarPage(pageNumber)
-#         # return render_template('read/listar.html', page=page, pageNumber=pageNumber)
-#     else:
-#         form.versao.data = page['ciclo_de_vida']['versao']
-#         form.status.data = page['ciclo_de_vida']['status']
-#         form.entidade.data = page['ciclo_de_vida']['contribuinte']['entidade']
-#         form.data.data = page['ciclo_de_vida']['contribuinte']['data']
-#         form.papel.data = page['ciclo_de_vida']['contribuinte']['papel']
-#         print(form.errors)
-
-#     return render_template('update/ciclo.html', page=page, form=form, pageNumber=pageNumber)
+    return render_template('docApi.html')

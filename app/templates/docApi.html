@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-1 text-gray-800">Documentação API</h1>
+    <p class="mb-4">A API do WikiLom é um serviço para consultar, escrever, editar
+        e apagar os dados salvos neste aplicativo. Ela funciona independentemente desta
+        plataforma, pois utilizou-se protocolos e padrões para comunicação e transferência
+        de dados. Para utilizar é necessário conhecer apenas a sua interface
+        descrita abaixo:</p>
+
+    <h2 class="h4 mb-1 text-gray-800">Listagem Completa</h2>
+    <p class="mb-4">Para obter uma listagem completa (no formato JSON)
+        das matérias cadastradas na aplicação basta inserir:</p>
+
+
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Link -->
+        <div class="col-lg-6">
+            <div class="card mb-4 py-3 border-left-primary">
+                <div class="card-body">
+                    /api/lista
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <h2 class="h4 mb-1 text-gray-800">Lista dos Títulos</h2>
+    <p class="mb-4">A rota abaixo lista apenas os títulos das matérias cadastradas
+        na aplicação</p>
+
+
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Link -->
+        <div class="col-lg-6">
+            <div class="card mb-4 py-3 border-left-primary">
+                <div class="card-body">
+                    /api/titulos
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <h2 class="h4 mb-1 text-gray-800">Filtro</h2>
+    <p class="mb-4">
+        A rota para filtragem recebe dois parâmetros: "campo" e "filtro". O filtro pode
+        ser qualquer texto e o campo deve ser algum da seguinte lista:
+    <ul>
+        <li>geral</li>
+        <li>ciclo_de_vida</li>
+        <li>meta_metadados</li>
+        <li> metadados_tecnicos</li>
+        <li>aspectos_educacionais</li>
+        <li>direitos</li>
+        <li>relacoes</li>
+        <li>classificacao</li>
+        <li>conteudo</li>
+    </ul>
+
+    </p>
+
+
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Link -->
+        <div class="col-lg-6">
+            <div class="card mb-4 py-3 border-left-primary">
+                <div class="card-body">
+                    /api/consulta/"campo"/"filtro"
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <h2 class="h4 mb-1 text-gray-800">Adicionar</h2>
+    <p class="mb-4">
+        Para adicionar uma nova matéria utilizando a api, basta entrar com os parâmetros "página"
+        e "paginação". Página é o nome da matéria, exemplo "galo". Como
+        existem muitas páginas referentes a um nome, então devemos adicionar um número que
+        será a paginação. Este número refere a qual página iremos adicionar.
+        Utilizando a plataforma é possível saber exatamente o título da página
+        que irá ser adicionada, mas na api devemos entrar diretamente com o número de paginação.
+    </p>
+
+
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Link -->
+        <div class="col-lg-6">
+            <div class="card mb-4 py-3 border-left-primary">
+                <div class="card-body">
+                    /api/add/"pagina"/"paginacao"
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <h2 class="h4 mb-1 text-gray-800">Atualizar</h2>
+    <p class="mb-4">
+        A rota de atualização recebe três parâmetros: "título" é o título da matéria a ser
+        atualizada, "campo" é o atributo da matéria a ser atualizado e "dados" são os novos
+        dados que vão substituir os antigos. Abaixo todos os atributos possíveis para se
+        receber:
+
+    <ul>
+        <li>geral.titulo</li>
+        <li>geral.idioma</li>
+        <li>geral.descricao</li>
+        <li>geral.palavras_chave</li>
+        <li>geral.cobertura</li>
+        <li>geral.estrutura</li>
+        <li>geral.nivel_de_agregacao</li>
+        <li>ciclo_de_vida.versao</li>
+        <li>ciclo_de_vida.status</li>
+        <li>ciclo_de_vida.contribuinte.entidade</li>
+        <li>ciclo_de_vida.contribuinte.data</li>
+        <li>ciclo_de_vida.contribuinte.papel</li>
+        <li>meta_metadados.identificador.catalogo</li>
+        <li>meta_metadados.identificador.entrada</li>
+        <li>meta_metadados.contribuinte.entidade</li>
+        <li>meta_metadados.contribuinte.data</li>
+        <li>meta_metadados.contribuinte.papel</li>
+        <li>meta_metadados.esquema_de_metadados</li>
+        <li>meta_metadados.idioma</li>
+        <li>metadados_tecnicos.formato</li>
+        <li>metadados_tecnicos.tamanho</li>
+        <li>metadados_tecnicos.localizacao</li>
+        <li>metadados_tecnicos.requisitos</li>
+        <li>metadados_tecnicos.observacoes_de_Instalacoes</li>
+        <li>metadados_tecnicos.outros_requisitos_de_sistema</li>
+        <li>metadados_tecnicos.duracao</li>
+        <li>aspectos_educacionais.tipo_de_iteratividade</li>
+        <li>aspectos_educacionais.tipo_de_recurso_de_aprendizado</li>
+        <li>aspectos_educacionais.nivel_de_interatividade</li>
+        <li>aspectos_educacionais.densidade_semantica</li>
+        <li>aspectos_educacionais.usuario_final</li>
+        <li>aspectos_educacionais.contexto_de_aprendizagem</li>
+        <li>aspectos_educacionais.idade_recomendada</li>
+        <li>aspectos_educacionais.grau_de_dificuldade</li>
+        <li>aspectos_educacionais.tempo_de_aprendizado</li>
+        <li>aspectos_educacionais.descricao</li>
+        <li>aspectos_educacionais.linguage</li>
+        <li>direitos.custo</li>
+        <li>direitos.direitos_autorais</li>
+        <li>direitos.descricao</li>
+        <li>relacoes.genero</li>
+        <li>relacoes.recurso.referencias</li>
+        <li>relacoes.recurso.links_externo</li>
+        <li>classificacao.finalidade</li>
+        <li>classificacao.diretorio</li>
+        <li>classificacao.descricao</li>
+        <li>classificacao.palavra_chave</li>
+        <li>conteudo.data</li>
+        <li>conteudo.entidade</li>
+        <li>conteudo.imagens</li>
+        <li>conteudo.comentarios</li>
+    </ul>
+    </p>
+
+
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Link -->
+        <div class="col-lg-6">
+            <div class="card mb-4 py-3 border-left-primary">
+                <div class="card-body">
+                    /api/update/"titulo"/"campo"/"dados"
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <h2 class="h4 mb-1 text-gray-800">Excluir</h2>
+    <p class="mb-4">
+         A rota para excluir uma matéria recebe o título da matéria a ser excluida
+    </p>
+
+
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Link -->
+        <div class="col-lg-6">
+            <div class="card mb-4 py-3 border-left-primary">
+                <div class="card-body">
+                    /api/delete/"titulo"
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
