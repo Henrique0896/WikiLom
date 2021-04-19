@@ -1,12 +1,11 @@
 from app import app
 from flask import render_template, jsonify, Response, redirect, url_for
 from app import db
-from app.models.forms import campoPesquisa, filtroDeDados, updateGeral, loginForm, createAccountForm
+from app.models.forms import campoPesquisa, filtroDeDados, updateGeral, loginForm, createAccountForm, profileForm
 import wikipedia
 import json
 from ..models.tables import LearningObject, User
 from .keys import keys
-from bson import json_util
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash
 
@@ -395,6 +394,55 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for("login"))
+
+
+
+
+#Profile
+@app.route("/profile", methods=['GET', 'POST'])
+@login_required
+def profile():
+    form = profileForm()
+    error = None
+    if form.validate_on_submit():
+        name = form.name.data
+        email = form.email.data
+        current_password = form.current_password.data
+        new_password = form.new_password.data
+        repeat_new_password = form.repeat_new_password.data
+        # Saber se email é o mesmo
+        query = db.filter_by('users', {"email": email})
+        if query:
+            print("ELE ENCONTROU UM EMAIL IGUAL")
+            user_bd = query[0]
+            print(user_bd)
+            is_email_used = True
+            is_email_same = (user_bd['email'] == current_user.email)
+            print(is_email_same)
+        else:
+            is_email_used = False
+            is_email_same = False
+        if not is_email_used or is_email_same:
+            #verificar se a senha atual é igual
+            user_bd = db.filter_by('users', {"email": current_user.email})
+            user_bd = user_bd[0]
+            is_pass_ok = check_password_hash(user_bd['password'], current_password)
+            if is_pass_ok:
+                if new_password == repeat_new_password:
+                    return redirect(url_for("index"))
+                else:
+                    error = 3 # Nova Senha Não coincide
+            else:
+                error = 2 #Senha atual está errada
+        else:
+            error = 1 #Email está em uso e não é o mesmo
+    else:
+        form.name.data = current_user.name
+        form.email.data = current_user.email
+        print(form.errors)
+    
+    return render_template('profile.html', form=form, error=error)
+    
 
 
 
