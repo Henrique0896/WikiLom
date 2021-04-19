@@ -413,12 +413,9 @@ def profile():
         # Saber se email é o mesmo
         query = db.filter_by('users', {"email": email})
         if query:
-            print("ELE ENCONTROU UM EMAIL IGUAL")
             user_bd = query[0]
-            print(user_bd)
             is_email_used = True
             is_email_same = (user_bd['email'] == current_user.email)
-            print(is_email_same)
         else:
             is_email_used = False
             is_email_same = False
