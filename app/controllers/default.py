@@ -1,12 +1,15 @@
 from app import app
-from flask import render_template, jsonify, Response
+from flask import render_template, jsonify, Response, redirect, url_for
 from app import db
-from app.models.forms import campoPesquisa, filtroDeDados, updateGeral
+from app.models.forms import campoPesquisa, filtroDeDados, updateGeral, loginForm, createAccountForm
 import wikipedia
 import json
-from ..models.tables import LearningObject
+from ..models.tables import LearningObject, User
 from .keys import keys
 from bson import json_util
+from flask_login import login_user, logout_user, login_required, current_user
+from werkzeug.security import check_password_hash
+
 
 pages_found = None
 instance_list = db.list("learning_object")
@@ -112,6 +115,7 @@ def update(title, prop, data):
 # Lista objetos do Banco
 @app.route("/index")
 @app.route("/")
+@login_required
 def index():
     global instance_list
     instance_list = db.list("learning_object")
@@ -128,6 +132,7 @@ def index():
 
 # Pesquisa qual materia será adicionada
 @app.route("/adicionar", methods=['POST', 'GET'])
+@login_required
 def adicionar():
     form = campoPesquisa()
     global pages_found
@@ -151,6 +156,7 @@ def adicionar():
 
 # Adiciona materia ao banco
 @app.route("/adicionar/<pageNumber>", methods=['POST', 'GET'])
+@login_required
 def adicionarPage(pageNumber):
     global pages_found
     page_title = pages_found[int(pageNumber)]
@@ -164,6 +170,7 @@ def adicionarPage(pageNumber):
 
 # Deletar materia ao banco
 @app.route("/excluir/<pageNumber>", methods=['DELETE', 'GET'])
+@login_required
 def excluirPage(pageNumber):
     global instance_list
     page_title = instance_list[int(pageNumber)]['geral']['titulo']
@@ -174,6 +181,7 @@ def excluirPage(pageNumber):
 
 # Listar materia ao banco
 @app.route("/listar/<pageNumber>", methods=['GET'])
+@login_required
 def listarPage(pageNumber):
     global instance_list
     page = instance_list[int(pageNumber)]
@@ -183,6 +191,7 @@ def listarPage(pageNumber):
 
 # Pesquisar materia no banco
 @app.route("/pesquisar", methods=['POST', 'GET'])
+@login_required
 def pesquisar():
     form = filtroDeDados()
     pages = None
@@ -208,6 +217,7 @@ def pesquisar():
 
 # Editar Geral
 @app.route("/editar/<pageNumber>", methods=['GET', 'POST'])
+@login_required
 def editarGeral(pageNumber):
     global instance_list
     page = instance_list[int(pageNumber)]
@@ -276,7 +286,7 @@ def editarGeral(pageNumber):
         page['conteudo']['comentarios'] = form.cont_comentarios.data
           
         db.update("learning_object", page)
-        return render_template('read/listar.html', page=page, pageNumber=pageNumber)
+        return redirect(url_for("listarPage", pageNumber=pageNumber))
     else:
         form.titulo.data = page['geral']['titulo']
         form.idioma.data = page['geral']['idioma']
@@ -345,6 +355,87 @@ def editarGeral(pageNumber):
 
 # Mostrar Documentação da API
 @app.route("/doc-api", methods=['GET'])
+@login_required
 def documentacaoApi():
 
     return render_template('docApi.html')
+
+#Login
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if not current_user.is_authenticated:
+        error = None
+        form = loginForm()
+        if form.validate_on_submit():
+            email = form.email.data
+            password = form.password.data
+            query = db.filter_by('users', {"email": email})
+            if query:
+                user_bd = query[0]
+                is_pass_ok = check_password_hash(user_bd['password'], password)
+                if is_pass_ok:
+                    user = User(user_bd['name'], user_bd['email'], user_bd['password'])
+                    login_user(user)
+                    print(user.email)
+                    return redirect(url_for("index"))
+                else:
+                    error = 1
+            else:
+                error = 1
+        else:
+            print("Não Validade")
+        return render_template('login.html', form=form, error=error)
+    else:
+        return redirect(url_for("index"))
+
+
+#Logout
+@app.route("/logout", methods=['GET', 'POST'])
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("login"))
+
+
+
+
+#Criar Conta
+@app.route("/createaccount", methods=['GET', 'POST'])
+def createAccount():
+    if not current_user.is_authenticated:
+        error = None
+        form = createAccountForm()
+        if form.validate_on_submit():
+            name = form.name.data
+            email = form.email.data
+            password = form.password.data
+            password2 = form.repeat_password.data
+            query = db.filter_by('users', {"email": email})
+            if not query:
+                if password == password2:
+                    user = User(name, email, password)
+                    db.create("users", user)
+                    login_user(user)
+                    return redirect(url_for("index"))
+                else:
+                    error = 2 #Senhas são diferentes
+            else:
+                error = 1 #Email já cadastrado
+        else:
+            print(form.errors)
+
+        return render_template('register.html', form=form, error=error)
+    else:
+        return redirect(url_for("index"))
+    
+
+
+@app.errorhandler(404)
+def errorPage(e):
+    return render_template('404.html')
+    
+
+
+@app.errorhandler(401)
+def page_not_found(e):
+    return redirect(url_for("login"))
