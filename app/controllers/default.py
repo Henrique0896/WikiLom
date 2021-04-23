@@ -426,6 +426,12 @@ def profile():
             is_pass_ok = check_password_hash(user_bd['password'], current_password)
             if is_pass_ok:
                 if new_password == repeat_new_password:
+                    user_bd['name'] = name
+                    user_bd['password'] = new_password
+                    user_bd['email'] = email
+
+                    
+                    db.update("users", user_bd)
                     return redirect(url_for("index"))
                 else:
                     error = 3 # Nova Senha Não coincide
