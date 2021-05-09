@@ -8,7 +8,7 @@ from ..models.tables import LearningObject, User
 from .keys import keys
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash
-
+from bson import json_util
 
 pages_found = None
 instance_list = db.list("learning_object")
@@ -148,7 +148,7 @@ def adicionar():
         else:
             pass
     else:
-        print(form.errors)
+        pass
 
     return render_template('create/adicionar.html', form=form, pages=pages)
 
@@ -161,7 +161,6 @@ def adicionarPage(pageNumber):
     page_title = pages_found[int(pageNumber)]
     page = wikipedia.page(page_title)
     learning_object = (LearningObject(page))
-    lom = json.dumps(learning_object.get_as_json(), indent=4)
     db.create("learning_object", learning_object)
 
     return render_template('create/adicionado.html', page_title=page_title)
@@ -208,7 +207,7 @@ def pesquisar():
             for materia in resultado:
                 pages.append(materia['geral']['titulo'])
     else:
-        print(form.errors)
+        pass
     return render_template('filter/pesquisar.html', form=form, pages=pages, filtro=filtro)
 
 
@@ -347,7 +346,7 @@ def editarGeral(pageNumber):
         form.cont_imagens.data = page['conteudo']['imagens']
         form.cont_comentarios.data = page['conteudo']['comentarios']
 
-        print(form.errors)
+        
 
     return render_template('update/geral.html', page=page, form=form, pageNumber=pageNumber)
 
@@ -442,7 +441,6 @@ def profile():
     else:
         form.name.data = current_user.name
         form.email.data = current_user.email
-        print(form.errors)
     
     return render_template('profile.html', form=form, error=error)
     
@@ -473,7 +471,7 @@ def createAccount():
             else:
                 error = 1 #Email já cadastrado
         else:
-            print(form.errors)
+            pass
 
         return render_template('register.html', form=form, error=error)
     else:
